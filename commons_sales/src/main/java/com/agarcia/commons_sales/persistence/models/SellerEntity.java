@@ -1,4 +1,4 @@
-package com.agarcia.sales_microservices.persistence.models;
+package com.agarcia.commons_sales.persistence.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

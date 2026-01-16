@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.agarcia.commons_microservices.services.controller.CommonController;
-import com.agarcia.sales_microservices.persistence.models.SalesEntity;
+import com.agarcia.commons_sales.persistence.models.SalesEntity;
 import com.agarcia.sales_microservices.service.SalesService;
 
 @RestController
