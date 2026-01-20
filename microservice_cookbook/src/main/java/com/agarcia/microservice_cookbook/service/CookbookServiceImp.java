@@ -10,6 +10,7 @@ import com.agarcia.microservice_cookbook.persistence.repository.CookbookReposito
 @Service
 public class CookbookServiceImp extends CommonServiceImp<CookbookEntity, CookbookRepository> implements CookbookService {
 
+    // Method to find a cookbook by ingredient ID
     @Override
     @Transactional(readOnly = true)
     public CookbookEntity findCookbookByIngredientId(Long ingredientId) {

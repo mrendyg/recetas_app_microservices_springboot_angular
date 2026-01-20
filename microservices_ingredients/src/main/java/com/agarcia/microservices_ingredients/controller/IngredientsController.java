@@ -17,24 +17,28 @@ import com.agarcia.microservices_ingredients.services.IngredientsService;
 @RestController
 public class IngredientsController extends CommonController<IngredientsEntity, IngredientsService> {
 
+    // Editar ingrediente especifico
     @PutMapping("/{id}")
     public ResponseEntity<?> editar(@RequestBody IngredientsEntity ingredientsEntity, 
     @PathVariable Long id){
+        // Buscar ingrediente por id
         Optional<IngredientsEntity> o = service.findById(id);
-
+        // Si no existe el ingrediente
         if (o.isEmpty()) {
             ResponseEntity.notFound().build();
         }
-
+        // Si existe el ingrediente
         IngredientsEntity ingredientsDB = o.get();
         ingredientsDB.setName(ingredientsEntity.getName());
         ingredientsDB.setBrand(ingredientsEntity.getBrand());
         ingredientsDB.setQuantity(ingredientsEntity.getQuantity());
         ingredientsDB.setCost(ingredientsEntity.getCost());
         ingredientsDB.setStock(ingredientsEntity.getStock());
+        // Guardar cambios
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.save(ingredientsDB));
     }
 
+    // Buscar ingredientes por nombre (contenga el termino)
     @GetMapping("/search-by-name/{term}")
     public ResponseEntity<?> searchByName(@PathVariable String term){
         return ResponseEntity.ok(service.findByName(term));

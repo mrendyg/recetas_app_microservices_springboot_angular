@@ -30,10 +30,12 @@ public class CookbookEntity {
     private String description;
     private String instructions;
 
+    // Relación con ingredients
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cookbook_id")
     private List<IngredientsEntity> ingredients = new ArrayList<>();
 
+    // Relación con sales
     @OneToMany(mappedBy = "cookbook", fetch = FetchType.LAZY)
     private List<SalesEntity> sales = new ArrayList<>();
 
@@ -41,6 +43,7 @@ public class CookbookEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 
+    // PrePersist para establecer la fecha de creación
     @PrePersist
     public void prePersist() {
         this.createAt = new Date();
@@ -51,6 +54,7 @@ public class CookbookEntity {
         this.ingredients.add(ingredient);
     }
 
+    // Eliminar ingrediente por ID
     public boolean removeIngredient(Long ingredientId) {
         return ingredients.removeIf(ing -> ing.getId().equals(ingredientId));
     }

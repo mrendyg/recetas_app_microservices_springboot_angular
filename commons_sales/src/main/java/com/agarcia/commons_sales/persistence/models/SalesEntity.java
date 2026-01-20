@@ -27,12 +27,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+// SalesEntity class representing a sales record in the database
 public class SalesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Many-to-one relationship with SellerEntity
     @JsonIgnoreProperties(value = {"sales"}, allowSetters= true)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id")
@@ -46,6 +48,7 @@ public class SalesEntity {
     @Column(name = "create_at")
     private Date createAt;
 
+    // Method to set the creation date before persisting
     @PrePersist
     protected void onCreate() {
         createAt = new Date();

@@ -16,6 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+// SellerEntity class representing a seller in the database
 public class SellerEntity {
     
     @Id

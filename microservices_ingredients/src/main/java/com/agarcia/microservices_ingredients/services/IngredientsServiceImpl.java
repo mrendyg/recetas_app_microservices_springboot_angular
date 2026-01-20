@@ -13,6 +13,7 @@ import com.agarcia.microservices_ingredients.persistence.repository.IngredientsR
 @Service
 public class IngredientsServiceImpl extends CommonServiceImp<IngredientsEntity, IngredientsRepository> implements IngredientsService {
 
+    // Buscar ingredientes por nombre (contenga el termino)
     @Override
     @Transactional(readOnly = true)
     public List<IngredientsEntity> findByName(String term) {

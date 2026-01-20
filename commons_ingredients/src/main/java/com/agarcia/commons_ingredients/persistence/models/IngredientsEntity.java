@@ -55,22 +55,28 @@ public class IngredientsEntity {
     
     private int stock;
 
+    // Timestamp de creación del registro
     @Column(name = "create_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 
+    // Método que se ejecuta antes de persistir la entidad para establecer la fecha de creación
     @PrePersist
     protected void onCreate() {
         createAt = new Date();
     }
 
+    // Sobrescribe el método equals para comparar entidades por su ID
     @Override
     public boolean equals(Object obj) {
+        // Verifica si el objeto es la misma instancia
         if (this == obj)
             return true;
+        // Verifica si el objeto es una instancia de IngredientsEntity
         if (obj instanceof IngredientsEntity){
             return false;
         }
+        // Compara los IDs de ambas entidades
         IngredientsEntity other = (IngredientsEntity) obj;
         return this.id != null && this.id.equals(other.getId());
     }

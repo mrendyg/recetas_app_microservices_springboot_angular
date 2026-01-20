@@ -16,16 +16,21 @@ import com.agarcia.sales_microservices.service.SalesService;
 @RestController
 public class SalesController extends CommonController<SalesEntity, SalesService>{
     
+
+    // Editar venta especifica
     @PutMapping("/{id}")
     public ResponseEntity<?> editar(@RequestBody SalesEntity sales, @PathVariable Long id){
         Optional<SalesEntity> o = service.findById(id);
-        
+        // Si no existe la venta
         if(!o.isPresent()){
             return ResponseEntity.notFound().build();
         }
+        // Si existe la venta
         SalesEntity salesDB = o.get();
+        // Actualizar campos
         salesDB.setSellerId(sales.getSellerId());
 
+        // Guardar cambios
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(salesDB));
 
     }
